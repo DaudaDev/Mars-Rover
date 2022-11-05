@@ -4,20 +4,28 @@ var plateau;
 var rovers = [];
 
 function makeRows(rows, cols) {
-  container.innerHTML = "";
   container.style.setProperty("--grid-rows", rows + 1);
   container.style.setProperty("--grid-cols", cols + 1);
   for (c = cols; c >= 0; c--) {
     for (d = 0; d <= rows; d++) {
+      var id = `cell-${d}-${c}`;
+      var element = document.getElementById(id);
+      if (element) {
+        continue;
+      }
       let cell = document.createElement("div");
-      cell.id = `cell-${d}-${c}`;
-      cell.innerText = `${d}, ${c}`;
+      cell.id = id;
+      cell.innerText = `${d} : ${c}`;
       container.appendChild(cell).className = "grid-item";
     }
   }
 }
 
 function printRoverPositions() {
+  var uploadButton = document.getElementById("getmovements");
+  var resetButton = document.getElementById("reset");
+  resetButton.disabled = true;
+  uploadButton.disabled = true;
   timoutIncrement = 1;
   this.rovers.forEach(function (rover, roverIndex) {
     var color = "#" + (((1 << 24) * Math.random()) | 0).toString(16);
@@ -39,6 +47,10 @@ function printRoverPositions() {
       timoutIncrement++;
     });
   });
+  setTimeout(() => {
+    uploadButton.disabled = false;
+    resetButton.disabled = false;
+  }, 1000 * timoutIncrement);
 
   function moveRover(roverPosition, previousPosition, color, roverIndex) {
     const getRotation = (direction) => {
@@ -61,7 +73,7 @@ function printRoverPositions() {
     )}"  style="color:${color}" title="${title}"></i>
         `;
     cell.style.backgroundColor = color + "22";
-
+    cell.scrollIntoView();
     if (
       previousPosition &&
       (previousPosition.xAxis != roverPosition.xAxis ||
@@ -71,12 +83,14 @@ function printRoverPositions() {
         `cell-${previousPosition.xAxis}-${previousPosition.yAxis}`
       );
       previousCell.style.backgroundColor = color + "33";
-      previousCell.innerHTML = "";
+      previousCell.innerText = `${previousPosition.xAxis} : ${previousPosition.yAxis}`;
     }
     return cell;
   }
 }
-
+function resetPlateau() {
+  container.innerHTML = "";
+}
 async function uploadFiles() {
   let movements = document.getElementById("fileUpload").files[0];
 
@@ -85,8 +99,6 @@ async function uploadFiles() {
     return;
   }
 
-  var uploadButton = document.getElementById("getmovements");
-  uploadButton.disabled = true;
   let formData = new FormData();
 
   formData.append("movements", movements);
@@ -113,6 +125,4 @@ async function uploadFiles() {
   } catch (e) {
     alert("Error:", e);
   }
-
-  uploadButton.disabled = false;
 }

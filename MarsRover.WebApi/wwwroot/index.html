@@ -26,6 +26,35 @@
     <div class="container">
       <h1>Mars Rover</h1>
       <div class="row">
+        <div class="col-sm-3">
+          <div class="form-group">
+            <button
+              type="button"
+              class="btn btn-outline-primary"
+              id="getmovements"
+              value="Get Movements"
+              onclick="uploadFiles()"
+            >
+              <i class="fa-solid fa-mars"></i>Add Rovers
+            </button>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="form-group">
+            <button
+              type="button"
+              class="btn btn-outline-primary"
+              id="reset"
+              name="reset"
+              value="Get Movements"
+              onclick="resetPlateau()"
+            >
+              <i class="fa-solid fa-mars"></i> Reset Plateau
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="row">
         <div class="col-sm-6">
           <div class="form-group">
             <label for="fileUpload">Upload Rover Movements</label>
@@ -36,21 +65,6 @@
               accept=".csv"
               value="Upload Rover Movements"
             />
-          </div>
-        </div>
-        <div class="col-sm-6">
-          <div class="form-group">
-            <label for="getmovements">Get Movements</label>
-            <button
-              type="button"
-              class="form-control"
-              id="getmovements"
-              value="Get Movements"
-              onclick="uploadFiles()"
-            >
-              <i class="fa-solid fa-mars"></i>
-              Get Movements
-            </button>
           </div>
         </div>
       </div>
