@@ -1,21 +1,8 @@
-using System;
 using System.Text.Json.Serialization;
 using MarsRover.Domain.Entities;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.DependencyInjection;
 using JsonOptions = Microsoft.AspNetCore.Http.Json.JsonOptions;
 
 var builder = WebApplication.CreateBuilder(args);
-
-//I am not adding restrictions here because it is a small test
-builder.Services.AddCors(p => p.AddPolicy("corsapp", builder =>
-{
-    builder
-        .WithOrigins("*")
-        .AllowAnyMethod()
-        .AllowAnyHeader();
-}));
 
 builder
     .Services
@@ -23,7 +10,6 @@ builder
 
 var app = builder.Build();
 app
-    .UseCors("corsapp")
     .UseDefaultFiles()
     .UseStaticFiles();
 

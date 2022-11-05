@@ -107,7 +107,7 @@ async function uploadFiles() {
   setTimeout(() => ctrl.abort(), 5000);
 
   try {
-    let response = await fetch("https://localhost:5047/upload", {
+    let response = await fetch("upload", {
       method: "POST",
       body: formData,
       signal: ctrl.signal,
