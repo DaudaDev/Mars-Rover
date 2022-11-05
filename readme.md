@@ -20,4 +20,4 @@ Use the following link to see a demo, [Mars Rover Code Test](https://marsroverap
 - Upload a movement file using the file upload
 - Click the 'Add Rovers' button to see the movement of the rovers on the plateau
 - You can add more rovers to the plateau by uploading more files
-- Click the reset button to clear the grid
+- Click the 'Reset' button to clear the grid
