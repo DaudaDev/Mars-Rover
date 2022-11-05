@@ -88,9 +88,11 @@ function printRoverPositions() {
     return cell;
   }
 }
+
 function resetPlateau() {
   container.innerHTML = "";
 }
+
 async function uploadFiles() {
   let movements = document.getElementById("fileUpload").files[0];
 
