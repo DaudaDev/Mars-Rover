@@ -3,7 +3,7 @@
 var plateau;
 var rovers = [];
 
-function makeRows(rows, cols) {
+function drawPlateau(rows, cols) {
   container.style.setProperty("--grid-rows", rows + 1);
   container.style.setProperty("--grid-cols", cols + 1);
   for (c = cols; c >= 0; c--) {
@@ -47,6 +47,7 @@ function printRoverPositions() {
       timoutIncrement++;
     });
   });
+
   setTimeout(() => {
     uploadButton.disabled = false;
     resetButton.disabled = false;
@@ -85,7 +86,6 @@ function printRoverPositions() {
       previousCell.style.backgroundColor = color + "33";
       previousCell.innerText = `${previousPosition.xAxis} : ${previousPosition.yAxis}`;
     }
-    return cell;
   }
 }
 
@@ -95,17 +95,15 @@ function resetPlateau() {
 
 async function uploadFiles() {
   let movements = document.getElementById("fileUpload").files[0];
-
   if (!movements) {
     alert("Upload file clicking Get Movements");
     return;
   }
 
   let formData = new FormData();
-
   formData.append("movements", movements);
 
-  const ctrl = new AbortController(); // timeout
+  const ctrl = new AbortController();
   setTimeout(() => ctrl.abort(), 5000);
 
   try {
@@ -114,15 +112,17 @@ async function uploadFiles() {
       body: formData,
       signal: ctrl.signal,
     });
+
     if (!response.ok) {
       var error = await response.text();
       alert(error);
       return;
     }
+
     var result = await response.json();
     this.plateau = result.plateau;
     this.rovers = result.rovers;
-    this.makeRows(this.plateau.upperY, this.plateau.upperX);
+    this.drawPlateau(this.plateau.upperY, this.plateau.upperX);
     this.printRoverPositions();
   } catch (e) {
     alert("Error:", e);
