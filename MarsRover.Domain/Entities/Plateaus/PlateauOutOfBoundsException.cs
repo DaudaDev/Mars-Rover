@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace MarsRover.Domain.Entities.Plateaus;
+﻿namespace MarsRover.Domain.Entities.Plateaus;
 
 public class PlateauOutOfBoundsException : Exception
 {

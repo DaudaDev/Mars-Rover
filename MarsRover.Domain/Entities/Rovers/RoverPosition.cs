@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace MarsRover.Domain.Entities.Rovers;
+﻿namespace MarsRover.Domain.Entities.Rovers;
 
 public record RoverPosition
 {

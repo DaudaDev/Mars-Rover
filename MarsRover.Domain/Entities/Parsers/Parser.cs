@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using MarsRover.Domain.Entities.Rovers;
+﻿using MarsRover.Domain.Entities.Rovers;
 
 namespace MarsRover.Domain.Entities.Parsers;
 
@@ -45,7 +41,7 @@ public class Parser
         
         var segments = line.Split('|');
         var positionSegment = segments[0].Split(" ");
-        List<Movement> movements = segments[1]
+        var movements = segments[1]
             .Select(movement => Enum.Parse<Movement>(movement.ToString()))
             .ToList();
 

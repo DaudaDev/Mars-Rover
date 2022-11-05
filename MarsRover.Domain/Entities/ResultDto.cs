@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using MarsRover.Domain.Entities.Rovers;
+﻿using MarsRover.Domain.Entities.Rovers;
 
 namespace MarsRover.Domain.Entities;
 

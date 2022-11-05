@@ -1,5 +1,4 @@
-﻿using System;
-using MarsRover.Domain.Entities.Rovers;
+﻿using MarsRover.Domain.Entities.Rovers;
 
 namespace MarsRover.Domain.Entities.Plateaus;
 
@@ -27,6 +26,7 @@ public sealed class Plateau
     //Given more time i would display thing information better in the front end
     public bool ThrowErrorWhenOutBounds { get; }
 
+    //With more time i will add logic to avoid collision
     public RoverPosition GetNextRoverPosition(RoverPosition currentPosition)
     {
         var (newXAxis, newYAxis) = currentPosition.Direction switch
@@ -87,7 +87,7 @@ public sealed class Plateau
     {
         if (upperXAxis <= 0)
         {
-            throw new ArgumentException("The Upper XAxis should be grater than 0");
+            throw new ArgumentException("The Upper XAxis should be greater than 0");
         }
         
         UpperXAxis = upperXAxis;
@@ -97,7 +97,7 @@ public sealed class Plateau
     {
         if (upperYAxis <= 0)
         {
-            throw new ArgumentException("The Upper YAxis should be grater than 0");
+            throw new ArgumentException("The Upper YAxis should be greater than 0");
         }
         
         UpperYAxis = upperYAxis;

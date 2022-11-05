@@ -1,7 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Linq;
-using MarsRover.Domain.Entities.Parsers;
+﻿using MarsRover.Domain.Entities.Parsers;
 using MarsRover.Domain.Entities.Plateaus;
 using MarsRover.Domain.Entities.Rovers;
 
@@ -11,9 +8,8 @@ public class Navigator
 {
     public ResultDto GetNavigations(Stream inputStream)
     {
-        var parser = new Parser();
-        var navigatorCommands = parser.GetNavigationCommands(inputStream);
-        
+        var navigatorCommands = GetNavigationCommands(inputStream);
+
         //The exercise says we should assume size to be 5,5.
         var plateau = new Plateau(5, 5);
         
@@ -24,6 +20,13 @@ public class Navigator
         return new ResultDto(
             Plateau: new PlateauDto(plateau.UpperXAxis, plateau.UpperYAxis),
             Rovers: rovers.Select(r => new RoverDto(r.PreviousPositions)).ToList());
+    }
+
+    private static IReadOnlyCollection<NavigatorCommand> GetNavigationCommands(Stream inputStream)
+    {
+        var parser = new Parser();
+        var navigatorCommands = parser.GetNavigationCommands(inputStream);
+        return navigatorCommands;
     }
 
     private static Rover PlanRoverMovement(NavigatorCommand navigatorCommand, Plateau plateau)

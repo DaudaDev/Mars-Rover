@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace MarsRover.Domain.Entities.Rovers;
+﻿namespace MarsRover.Domain.Entities.Rovers;
 
 public class Rover
 {

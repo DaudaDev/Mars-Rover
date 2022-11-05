@@ -1,5 +1,4 @@
-﻿using System;
-using MarsRover.Domain.Entities.Plateaus;
+﻿using MarsRover.Domain.Entities.Plateaus;
 using MarsRover.Domain.Entities.Rovers;
 
 namespace MarsRover.Domain.Tests;
